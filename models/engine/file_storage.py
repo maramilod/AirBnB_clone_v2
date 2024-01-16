@@ -20,7 +20,7 @@ class FileStorage:
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
-        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        self.__objects["{}.{}".format(type(obj).__name__, obj.id)] = obj
 
     def save(self):
         """Saves storage dictionary to file"""
@@ -32,13 +32,12 @@ class FileStorage:
             json.dump(temp, f)
 
     def delete(self, obj=None):
-        """delete function its for delete
-        objects from __objects if its inside and if not do None"""
+        """delete obj from __objects if it’s inside if not do None"""
         if obj is None:
             return
-        for k in self.__objects:
-            if (self.__objects[k] == obj):
-                del self.__objects[k]
+        for key in self.__objects:
+            if (self.__objects[key] == obj):
+                del self.__objects[key]
                 break
 
     def reload(self):
