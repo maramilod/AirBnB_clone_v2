@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" New class for sqlAlchemy for hbnb clone -_-"""
+""" new class for sqlAlchemy """
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import (create_engine)
@@ -33,10 +33,9 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """
-        returns a dictionary
+        """returns a dictionary
         Return:
-            dictionary of __object
+            returns a dictionary of __object
         """
         dic = {}
         if cls:
@@ -56,27 +55,23 @@ class DBStorage:
         return (dic)
 
     def new(self, obj):
-        """
-        add element in the table
+        """add a new element in the table
         """
         self.__session.add(obj)
 
     def save(self):
-        """
-        save changes
+        """save changes
         """
         self.__session.commit()
 
     def delete(self, obj=None):
-        """
-        delete element in the table
+        """delete an element in the table
         """
         if obj:
             self.session.delete(obj)
 
     def reload(self):
-        """
-        config
+        """configuration
         """
         Base.metadata.create_all(self.__engine)
         sec = sessionmaker(bind=self.__engine, expire_on_commit=False)
@@ -84,7 +79,6 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        """
-        remove()
+        """ calls remove()
         """
         self.__session.close()
