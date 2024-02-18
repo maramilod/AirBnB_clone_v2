@@ -40,12 +40,11 @@ def numtemp(n):
 
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
 def oddoreven(n):
-    if n % 2 == 0:
+    if n % 2:
         ore = "odd"
     else:
         ore = "even"
-    return render_template("6-number_odd_or_even.html", n=n,
-            ore=ore)
+    return render_template("6-number_odd_or_even.html", n=n,  ore=ore)
 
 
 if __name__ == "__main__":
