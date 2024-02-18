@@ -29,6 +29,6 @@ def pyiscool(text):
     f_text = text.replace("_", " ")
     return "Python {}".format(f_text)
 
+
 if __name__ == '__main__':
     app.run()
-
