@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """ starts a Flask web application"""
+
 from flask import Flask, render_template
-
-
 app = Flask(__name__)
 
 
@@ -31,7 +30,7 @@ def pyiscool(text):
 
 @app.route("/number/<int:n>", strict_slashes=False)
 def onlynum(n):
-    return "{} is a number".format(n)
+    return "{:d} is a number".format(n)
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
@@ -41,11 +40,12 @@ def numtemp(n):
 
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
 def oddoreven(n):
-    if n % 2:
+    if n % 2 == 0:
         ore = "odd"
     else:
         ore = "even"
-    return render_template("6-number_odd_or_even.html", n=n, ore=ore)
+    return render_template("6-number_odd_or_even.html", n=n,
+            ore=ore)
 
 
 if __name__ == "__main__":
